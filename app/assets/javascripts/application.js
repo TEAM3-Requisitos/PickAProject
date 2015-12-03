@@ -13,11 +13,8 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
-//= require bootstrap-sprockets
-//= require twitter/bootstrap
 //= require_tree .
 //= require adminlte
-//= require_jquery_nested_form
 //= require turbolinks
 
 /* Sets the minimum height of the wrapper div to ensure the footer reaches the bottom */
