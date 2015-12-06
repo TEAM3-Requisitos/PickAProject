@@ -7,14 +7,34 @@
 		<%= javascript_include_tag "nested_form" %>
 		<%= csrf_meta_tags %>
 	</head>
-	<body class="hold-transition skin-blue sidebar-mini">
-		<div class="wrapper">
+
+	<% if user_signed_in? %>
+		<body class="hold-transition skin-blue sidebar-mini">
+			<div class="wrapper">
+				<!-- Main Header -->
+				<%= render  partial: "/layouts/header" %>
+
+				<!-- Left side column. contains the logo and sidebar -->
+				<%= render partial: "/layouts/sidebar_left" %>
+
+				<!-- Content Wrapper. Contains page content -->
+				<div class="content-wrapper">
+					<%= yield %>
+				</div><!-- /.content-wrapper -->
+
+				<!-- Main Footer -->
+				<%= render partial: "/layouts/footer" %>
+
+				<!-- Control Sidebar -->
+				<%= render partial: "/layouts/sidebar_control" %>
+			</div><!-- ./wrapper -->
+		</body>
+
+	<% else %>
+		<body class="layout-top-nav skin-blue register-page">
 			<!-- Main Header -->
 			<%= render  partial: "/layouts/header" %>
-
-			<!-- Left side column. contains the logo and sidebar -->
-			<%= render partial: "/layouts/sidebar_left" %>
-
+			
 			<!-- Content Wrapper. Contains page content -->
 			<div class="content-wrapper">
 				<%= yield %>
@@ -22,9 +42,6 @@
 
 			<!-- Main Footer -->
 			<%= render partial: "/layouts/footer" %>
-
-			<!-- Control Sidebar -->
-			<%= render partial: "/layouts/sidebar_control" %>
-		</div><!-- ./wrapper -->
-	</body>
+		</body>
+	<% end %>
 </html>

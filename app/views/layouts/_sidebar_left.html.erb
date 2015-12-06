@@ -1,26 +1,25 @@
 <aside class="main-sidebar">
-
-	<% if user_signed_in? %>
-		<div class="user-panel">
-			<div class="pull-left image">
-				<!-- Profile Image -->
-				<% if current_user.profile_picture.present? %>
-					<%= image_tag(current_user.profile_picture.url(), class: "img-circle") %>
-				<% else %>
-					<%= image_tag("missing_profile_picture.jpg", class: "img-circle") %>
-				<% end %>
-			</div>
-			<div class="pull-left info">
-				<%= link_to(current_user) do %>
-					<p style="margin:auto auto 0 5px"><b><%= current_user.username %></b></p>
-				<% end %>
-				<a><i class="fa fa-circle text-success"></i> Online</a>
-			</div>
-		</div>
-	<% end %>
-
 	<!-- sidebar: style can be found in sidebar.less -->
 	<section class="sidebar">
+		<% if user_signed_in? %>
+			<div class="user-panel">
+				<div class="pull-left image">
+					<!-- Profile Image -->
+					<% if current_user.profile_picture.present? %>
+						<%= image_tag(current_user.profile_picture.url(), class: "img-circle") %>
+					<% else %>
+						<%= image_tag("missing_profile_picture.jpg", class: "img-circle") %>
+					<% end %>
+				</div>
+				<div class="pull-left info">
+					<%= link_to(current_user) do %>
+						<p style="margin:auto auto 0 5px"><b><%= current_user.username %></b></p>
+					<% end %>
+					<a><i class="fa fa-circle text-success"></i> Online</a>
+				</div>
+			</div>
+		<% end %>
+
 		<!-- search form (Optional) -->
 		<form action="#" method="get" class="sidebar-form">
 			<div class="input-group">
