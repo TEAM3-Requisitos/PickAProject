@@ -1,22 +1,19 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
-	<h1>User profile</h1>
 </section>
 <!-- Main content -->
 <section class="content">
 	<div class="row">
 		<div class="col-md-3">
-			<!-- Profile Image -->
 			<div class="box box-primary">
 				<div class="box-body box-profile">
+					<!-- Profile Image -->
 					<% if @user.profile_picture.present? %>
-						<%= image_tag(@ong.image_file.url(), class: "profile-user-img img-responsive img-circle", alt: "User profile picture" ) %>
+						<%= image_tag(@user.profile_picture.url(), class: "profile-user-img img-responsive img-circle") %>
 					<% else %>
-						<%= image_tag("pap_default_banner.png", class: "profile-user-img img-responsive img-circle", alt: "User profile picture" ) %>
+						<%= image_tag("missing_profile_picture.jpg", class: "profile-user-img img-responsive img-circle") %>
 					<% end %>
-
 					<h3 class="profile-username text-center"><%= @user.username %></h3>
-
 					<p class="text-muted text-center"><%= @user.work %></p>
 
 					<ul class="list-group list-group-unbordered">
@@ -30,9 +27,9 @@
 
 					<% if user_signed_in? %>
 						<% if current_user.id != @user.id %>
-							<a href="#" class="btn btn-primary btn-block disabled"><b>+Add Friend</b></a>
+							<a class="btn btn-primary btn-block disabled"><b>Add Friend</b></a>
 						<% else %>
-							<a href="#" class="btn btn-primary btn-block disabled"><b>Edit</b></a>
+							<a class="btn btn-primary btn-block"><b>Edit profile</b></a>
 						<% end %>
 					<% end %>
 				</div>
@@ -76,12 +73,11 @@
 					</p>
 
 					<hr>
-					<strong><i class="fa fa-phone margin-r-5"></i> Phone</strong>
+					<strong><i class="fa fa-user margin-r-5"></i> Contact</strong>
 					<p class="text-muted">
-						<% if @user.phone.blank? %>
-							Unavailable
-						<% else %>
-							<%= @user.phone %>
+							<i class="fa fa-at margin-r-5"></i> <%= @user.email %><br>
+						<% if not @user.phone.blank? %>
+							<i class="fa fa-phone margin-r-5"></i> <%= @user.phone %>
 						<% end %>
 					</p>
 
@@ -94,7 +90,7 @@
 							<%= @user.birthday %>
 						<% end %>
 					</p>
-					
+
 					<hr>
 					<strong><i class="fa fa-pencil margin-r-5"></i>
 						 Skills
@@ -124,6 +120,58 @@
 				<!-- /.box-body -->
 			</div>
 			<!-- /.box -->
-		</div>
-	</div>
+		</div><!-- /.col-md-3 -->
+		<div class="col-md-9">
+			<div class="nav-tabs-custom">
+				<ul class="nav nav-tabs">
+					<li class="active"><a aria-expanded="true" href="#projects" data-toggle="tab">Projects</a></li>
+					<li class=""><a aria-expanded="false" href="#public_activity" data-toggle="tab">Public Activity</a></li>
+					<li class=""><a aria-expanded="false" href="#tasks" data-toggle="tab">Tasks</a></li>
+				</ul>
+				<div class="tab-content">
+					<!-- Projects' Tab -->
+					<div class="tab-pane active" id="projects">
+						<% @user.own_projects.each do |own_project| %>
+							
+						<% end %>
+					</div>
+					<!-- /.tab-pane -->
+					<!-- Public Activity's Tab -->
+					<div class="tab-pane" id="public_activity">
+						<% @user.projects.each do |project| %>
+							
+						<% end %>
+					</div>
+					<!-- /.tab-pane -->
+					<!-- Tasks' Tab -->
+					<div class="tab-pane" id="tasks">
+						<% @user.tasks.each do |task| %>
+
+						<% end %>
+					</div><!-- /.tab-pane -->
+				</div><!-- /.tab-content -->
+			</div><!-- /.nav-tabs-custom -->
+
+
+			<!-- AREA CHART -->
+			<div class="box box-primary">
+				<div class="box-header with-border">
+					<h3 class="box-title">Contributions</h3>
+				</div>
+				<div class="box-body">
+					<div class="chart">
+						<!-- <= line_chart @data, @options %> -->
+					</div>
+				</div>
+				<!-- /.box-body -->
+			</div>
+			<!-- /.box -->
+
+
+			
+		</div><!-- /.col-md-9 -->
+	</div><!-- /.row -->
 </section><!-- Content Header (Page header) -->
+
+<!-- ChartJS 1.0.1 -->
+<script src="../../plugins/chartjs/Chart.min.js"></script>
