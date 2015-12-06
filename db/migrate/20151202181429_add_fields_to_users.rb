@@ -2,7 +2,7 @@ class AddFieldsToUsers < ActiveRecord::Migration
 	def change
 		# Pick a Project data
 		add_column :users, :points, :integer
-		
+
 		# Personal information
 		add_column :users, :username, :string
 		add_column :users, :name, :string

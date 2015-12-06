@@ -1,0 +1,103 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+	<h1>User profile</h1>
+</section>
+<!-- Main content -->
+<section class="content">
+	<div class="row">
+		<div class="col-md-3">
+			<!-- Profile Image -->
+			<div class="box box-primary">
+				<div class="box-body box-profile">
+					<% if @user.profile_picture.present? %>
+						<%= image_tag(@ong.image_file.url(), class: "profile-user-img img-responsive img-circle", alt: "User profile picture" ) %>
+					<% else %>
+						<%= image_tag("pap_default_banner.png", class: "profile-user-img img-responsive img-circle", alt: "User profile picture" ) %>
+					<% end %>
+
+					<h3 class="profile-username text-center"><%= @user.username %></h3>
+
+					<p class="text-muted text-center"><%= @user.work %></p>
+
+					<ul class="list-group list-group-unbordered">
+						<li class="list-group-item">
+							<b>Friends</b> <a class="pull-right">0</a>
+						</li>
+						<li class="list-group-item">
+							<b>Ranking</b> <a class="pull-right">1º</a>
+						</li>
+					</ul>
+
+					<% if user_signed_in? %>
+						<% if current_user.id != @user.id %>
+							<a href="#" class="btn btn-primary btn-block disabled"><b>+Add Friend</b></a>
+						<% else %>
+							<a href="#" class="btn btn-primary btn-block disabled"><b>Edit</b></a>
+						<% end %>
+					<% end %>
+				</div>
+				<!-- /.box-body -->
+			</div>
+			<!-- /.box -->
+
+			<!-- About Me Box -->
+			<div class="box box-primary">
+				<div class="box-header with-border">
+					<h3 class="box-title">About Me</h3>
+				</div>
+				<!-- /.box-header -->
+				<div class="box-body">
+					<strong><i class="fa fa-book margin-r-5"></i> Education</strong>
+					<p class="text-muted">
+						<% if @user.education.blank? %>
+							Unavailable
+						<% else %>
+							<%= @user.education %>
+						<% end %>
+					</p>
+
+					<hr>
+					<strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
+					<p class="text-muted">
+						<% if @user.city.blank? and @user.state.blank? and @user.country.blank? %>
+							Unavailable
+						<% else %>
+							<% if not @user.city.blank? %>
+								<%= @user.city %><% if @user.state.blank? and (not @user.country.blank?) %>, <% end %>
+								<% if not @user.state.blank? %> - <% end %>
+							<% end %>
+							<% if not @user.state.blank? %>
+								<%= @user.state %><% if not @user.country.blank? %>, <% end %>
+							<% end %>
+							<% if not @user.country.blank? %>
+								<%= @user.country %>
+							<% end %>
+						<% end %>
+					</p>
+
+					<hr>
+					<strong><i class="fa fa-phone margin-r-5"></i> Phone</strong>
+					<p class="text-muted">
+						<% if @user.phone.blank? %>
+							Unavailable
+						<% else %>
+							<%= @user.phone %>
+						<% end %>
+					</p>
+
+					<hr>
+					<strong><i class="fa fa-calendar margin-r-5"></i> Birthday</strong>
+					<p class="text-muted">
+						<% if @user.birthday.blank? %>
+							Unavailable
+						<% else %>
+							<%= @user.birthday %>
+						<% end %>
+					</p>
+				</div>
+				<!-- /.box-body -->
+			</div>
+			<!-- /.box -->
+		</div>
+	</div>
+</section><!-- Content Header (Page header) -->
