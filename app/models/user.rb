@@ -51,12 +51,12 @@ class User < ActiveRecord::Base
 		# Pick a Project starting pontuation
 		def default_parameters
 			self.points = 0
-			self.username = self.username.capitalize
-			self.name = self.name.capitalize unless name.blank?
-			self.country = self.country.capitalize unless country.blank?
-			self.state = self.state.capitalize unless state.blank?
-			self.city = self.city.capitalize unless city.blank?
-			self.work = self.work.capitalize unless work.blank?
-			self.education = self.education.capitalize unless education.blank?
+			self.username = self.username.split.map(&:capitalize).join(' ')
+			self.name = self.name.split.map(&:capitalize).join(' ') unless name.blank?
+			self.country = self.country.split.map(&:capitalize).join(' ') unless country.blank?
+			self.state = self.state.split.map(&:capitalize).join(' ') unless state.blank?
+			self.city = self.city.split.map(&:capitalize).join(' ') unless city.blank?
+			self.work = self.work.split.map(&:capitalize).join(' ') unless work.blank?
+			self.education = self.education.split.map(&:capitalize).join(' ') unless education.blank?
 		end
 end
