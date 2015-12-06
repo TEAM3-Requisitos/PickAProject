@@ -4,18 +4,21 @@ class User < ActiveRecord::Base
 	devise :database_authenticatable, :registerable,
 				 :rememberable, :trackable, :validatable  
 
-	# Give it roles
-	rolify
-
-	# Include default role to an user after their registration
-	after_create :default_role
-
 	# Associate users to projects that they own
 	has_many :own_projects, foreign_key: 'owner_id', class_name: "Project"
 	
 	# Associate users to projects that they contribute (make tasks)
 	has_many :tasks
 	has_many :projects, through: :tasks
+
+	# Give it roles
+	rolify
+
+	# Callbacks
+	# Include default role to an user after their registration
+	after_create :default_role
+	# User default parameters
+	before_save :default_parameters
 
 	# Attach a profile picture to an user
 	# Paperclip gem sintax for upload image files.
@@ -33,13 +36,24 @@ class User < ActiveRecord::Base
 	validates(:state, format: { with: /\a[a-za-z]+\z/, message: "this field only allows letters" }, allow_blank: true)
 	validates(:city, format: { with: /\a[a-za-z]+\z/, message: "this field only allows letters" }, allow_blank: true)
 	# Professional information
-	validates(:education_level, format: { with: /\a[a-za-z]+\z/, message: "this field only allows letters" }, allow_blank: true)
-	validates(:institution, format: { with: /\a[a-za-z]+\z/, message: "this field only allows letters" }, allow_blank: true)
+	validates(:work, format: { with: /\a[a-za-z]+\z/, message: "this field only allows letters" }, allow_blank: true)
+	validates(:education, format: { with: /\a[a-za-z]+\z/, message: "this field only allows letters" }, allow_blank: true)	
 
 	# Add a default role to an user at its creation
 	private 
 		def default_role
 			self.roles << Role.find_by_name("user")
 			self.save
+		end
+		# Pick a Project starting pontuation
+		def default_parameters
+			self.points = 0
+			self.username.capitalize
+			self.name.capitalize unless name.blank?
+			self.country.capitalize unless country.blank?
+			self.state.capitalize unless state.blank?
+			self.city.capitalize unless city.blank?
+			self.work.capitalize unless work.blank?
+			self.education.capitalize unless education.blank?
 		end
 end
