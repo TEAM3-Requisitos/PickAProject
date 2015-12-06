@@ -32,6 +32,8 @@ gem "paperclip", "~> 4.3"
 gem "bcrypt"
 # Use ChartJS
 gem "chartjs-ror"
+# Use jQuery input masks
+gem 'jquery-inputmask-rails'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

@@ -29,7 +29,9 @@
 						<% if current_user.id != @user.id %>
 							<a class="btn btn-primary btn-block disabled"><b>Add Friend</b></a>
 						<% else %>
-							<a class="btn btn-primary btn-block"><b>Edit profile</b></a>
+							<%= link_to edit_user_registration_path, :get => :edit, class: "btn btn-primary btn-block" do %>
+								<b>Edit profile</b>
+							<% end %>
 						<% end %>
 					<% end %>
 				</div>
