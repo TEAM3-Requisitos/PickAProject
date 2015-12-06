@@ -11,6 +11,9 @@ class User < ActiveRecord::Base
 	has_many :tasks
 	has_many :projects, through: :tasks
 
+	# Associate users to skills
+	has_many :skills, dependent: :destroy
+
 	# Give it roles
 	rolify
 
@@ -48,12 +51,12 @@ class User < ActiveRecord::Base
 		# Pick a Project starting pontuation
 		def default_parameters
 			self.points = 0
-			self.username.capitalize
-			self.name.capitalize unless name.blank?
-			self.country.capitalize unless country.blank?
-			self.state.capitalize unless state.blank?
-			self.city.capitalize unless city.blank?
-			self.work.capitalize unless work.blank?
-			self.education.capitalize unless education.blank?
+			self.username = self.username.capitalize
+			self.name = self.name.capitalize unless name.blank?
+			self.country = self.country.capitalize unless country.blank?
+			self.state = self.state.capitalize unless state.blank?
+			self.city = self.city.capitalize unless city.blank?
+			self.work = self.work.capitalize unless work.blank?
+			self.education = self.education.capitalize unless education.blank?
 		end
 end
