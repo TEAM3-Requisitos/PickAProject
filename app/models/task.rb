@@ -1,20 +1,25 @@
 class Task < ActiveRecord::Base
 	# Associate tasks to users and projects
 	# Each project and user has a list of tasks
-	belongs_to :project
-	belongs_to :user
+	belongs_to(:project)
+	belongs_to(:user)
 
 	# Attach image to a project
-	has_attached_file :image_file, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+	has_attached_file(:image_file, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png")
 
 	# Check if the image file's name is valid
-	validates_attachment_content_type :image_file, :content_type => /\Aimage\/.*\Z/
+	validates_attachment_content_type(:image_file, :content_type => /\Aimage\/.*\Z/)
 
 	# Impossible to create a task without a title
 	validates(:title, presence:true)
 	TITLE_MAX_LENGTH = 60 # Characters
 	TITLE_MIN_LENGTH = 3  # Characters
 	validates(:title, length: { in: TITLE_MIN_LENGTH...TITLE_MAX_LENGTH })
+
+    # Impossible to set manually the status name, there
+    # are limitted options to choose
+    PERMITTED_STATUS = %w(Running Stopped Planning)
+    validates(:status, inclusion: PERMITTED_STATUS)
 
 	# Impossible to create a task without a difficult level
 	validates(:difficult, presence: true)
