@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
 
 	# Attach a profile picture to an user
 	# Paperclip gem sintax for upload image files.
-	has_attached_file :profile_picture, :styles => {}, :default_url => "/images/:style/missing_profile_picture.png"
+	has_attached_file :profile_picture, :styles => {}, :default_url => "missing_profile_picture.jpg"
 	validates_attachment_content_type :profile_picture, :content_type => /\Aimage\/.*\Z/
 
 	# Validations
