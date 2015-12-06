@@ -3,9 +3,6 @@ class CreateProjects < ActiveRecord::Migration
     create_table :projects do |t|
       t.belongs_to :owner, index: true
 
-      #[TODO] this field should be removed and substituted by an asssociation
-      t.string :author
-
       t.string :title # The project name.
 
       t.string :level # It's about the difficult of the project.

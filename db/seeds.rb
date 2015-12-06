@@ -7,6 +7,6 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Role.create([	{name: 'user'}, 
-							{name: 'member'}, 
-							{name: 'owner'}, 
-							{name: 'admin'}])
+                {name: 'member'}, 
+                {name: 'owner'}, 
+                {name: 'admin'}])
