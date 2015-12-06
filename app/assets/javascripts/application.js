@@ -16,6 +16,8 @@
 //= require_tree .
 //= require adminlte
 //= require turbolinks
+//= require Chart
+//= require excanvas
 
 /* Sets the minimum height of the wrapper div to ensure the footer reaches the bottom */
 function setWrapperMinHeight() {
