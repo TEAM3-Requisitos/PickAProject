@@ -56,4 +56,9 @@ class Project < ActiveRecord::Base
 	PERMITTED_STATUS = %w(Active Planning Stopped Finished)
 	validates(:status, inclusion: PERMITTED_STATUS)
 
+    def self.search(search)
+      where("title LIKE ? OR description LIKE ? OR level LIKE ? OR category LIKE ? OR \
+            status LIKE ?", "%#{search}%","%#{search}%","%#{search}%","%#{search}%", "%#{search}%") 
+    end
+
 end
