@@ -70,7 +70,8 @@ describe Ability do
 		# Create User with default parameters, only valid fields
 		def create_user(options={})
 			User.create({
-				username: "user example",
+				username: "userexample",
+				name: "name example",
 				email: "example@email.com",
 				password: "password",
 				password_confirmation: "password"
