@@ -13,8 +13,14 @@
 					<% else %>
 						<%= image_tag("missing_profile_picture.jpg", class: "profile-user-img img-responsive img-circle") %>
 					<% end %>
-					<h3 class="profile-username text-center"><%= @user.username %></h3>
-					<p class="text-muted text-center"><%= @user.work %></p>
+					<h3 class="profile-username text-center"><%= @user.name %></h3>
+					<p class="text-muted text-center">
+						<% if not current_user.work.blank? %>
+							<%= current_user.work %>
+						<% else %>
+							<%= current_user.username %>
+						<% end %>	
+					</p>
 
 					<ul class="list-group list-group-unbordered">
 						<li class="list-group-item">

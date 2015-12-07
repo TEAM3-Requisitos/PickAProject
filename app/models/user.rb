@@ -31,7 +31,9 @@ class User < ActiveRecord::Base
 	# Validations
 	# Personal information
 	validates(:username, uniqueness: { case_sensitive: false })
+	validates(:username, format: { with: /\A[a-zA-Z]+\z/, message: "this field only allows letters" })
 	validate(:validate_username)
+	validates(:name, presence: true)
 	validates(:phone, numericality: { only_integer: true }, allow_blank: true)
 	validates(:sex, inclusion: { in: %w(Male Female), message: "\"%{value}\" is not a valid sex" }, allow_blank: true)
 	
@@ -67,7 +69,7 @@ class User < ActiveRecord::Base
 		# Pick a Project starting pontuation
 		def default_parameters
 			self.points = 0
-			self.name = self.name.split.map(&:capitalize).join(' ') unless name.blank?
+			self.name = self.name.split.map(&:capitalize).join(' ')
 			self.country = self.country.split.map(&:capitalize).join(' ') unless country.blank?
 			self.city = self.city.split.map(&:capitalize).join(' ') unless city.blank?
 			self.work = self.work.split.map(&:capitalize).join(' ') unless work.blank?
