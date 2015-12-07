@@ -4,7 +4,7 @@
       <% if @project.errors.any? %>
       <div id="error_expl" class="panel panel-danger">
         <div class="panel-heading">
-          <h3 class="panel-title"><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h3>
+          <h3 class="panel-title"><%= pluralize(@project.errors.count, "error") + "prohibited this project from being saved:" %></h3>
         </div>
         <div class="panel-body">
           <ul>
@@ -23,7 +23,6 @@
       <div class="controls">
         <%= f.text_field :title, :class => 'form-control' %>
       </div>
-      <%= error_span(@project[:title]) %>
     </div>
 
     <!-- Get category -->
@@ -32,7 +31,6 @@
       <div class="controls">
         <%= f.select :category, options_for_select(@project.class::PERMITTED_CATEGORIES), {}, :class => 'form-control' %>
       </div>
-      <%= error_span(@project[:category]) %>
     </div>
 
     <!-- Get level -->
@@ -42,7 +40,6 @@
       <div class="controls">
         <%= f.select :level, options_for_select(@project.class::PERMITTED_LEVELS), {}, :class => 'form-control' %>
       </div>
-      <%= error_span(@project[:level]) %>
     </div>
 
     <!-- Get status -->
@@ -51,16 +48,14 @@
       <div class="controls">
         <%= f.select :status, @project.class::PERMITTED_STATUS, {}, :class => 'form-control' %>
       </div>
-      <%= error_span(@project[:status]) %>
     </div>
 
     <!-- Get the image for this task -->
     <div class="control-group">
       <%= f.label :image_file, "Overview image", class: 'control-label' %>
       <div class="controls">
-        <%= f.file_field :image_file %>
+        <%= f.file_field :image_file, row: "2", class: 'form-control' %>
       </div>
-      <%= error_span(@project[:image_file]) %>
     </div>
     <br />
 
@@ -70,7 +65,6 @@
       <div class="controls">
         <%= f.text_area :description, :class => 'form-control' %>
       </div>
-      <%= error_span(@project[:description]) %>
     </div>
 
     <!-- Get each task information. -->

@@ -4,10 +4,17 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   # Check authorization for every action, unless its made by a devise model
-  check_authorization :unless => :devise_controller?
-
+  before_action :configure_permitted_parameters, if: :devise_controller?
+  check_authorization unless: :devise_controller?
   # Handle 'access denied' exception redirecting the user to the home page
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to root_url, :notice => exception.message
+    redirect_to root_url, notice: exception.message
   end
+
+  protected
+    def configure_permitted_parameters
+      devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:username, :email, :password, :password_confirmation, :remember_me) }
+      devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:login, :username, :email, :password, :remember_me) }
+      devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:username, :email, :password, :password_confirmation, :current_password) }
+    end
 end
