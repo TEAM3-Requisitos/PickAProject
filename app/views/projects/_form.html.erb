@@ -1,5 +1,6 @@
 <div class="app-form">
-  <%= nested_form_for @project, html: { class: "form-horizontal project" } do |f| %>
+  <%= nested_form_for @project, html: { class: "form-horizontal project" },
+      url: { action: act, id: @project, user_id: current_user.id } do |f| %>
       <!-- Get possible errors in the empty project object -->
       <% if @project.errors.any? %>
       <div id="error_expl" class="panel panel-danger">
@@ -109,7 +110,7 @@
       <!-- Buttons to submit or cancel form -->
       <%= f.submit nil, :class => 'btn btn-primary' %>
       <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                projects_path, :class => 'btn btn-default' %>
+                user_projects_path(current_user.id), :class => 'btn btn-default' %>
     </div>
   <% end %>
 </div>

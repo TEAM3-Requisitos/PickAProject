@@ -41,8 +41,10 @@
 			<li class="treeview">
 				<a href="#"><i class="fa fa-rocket"></i> <span>Projects</span> <i class="fa fa-angle-left pull-right"></i></a>
 				<ul class="treeview-menu">
-					<li><%= link_to "Start a Project", new_project_path %></li>
-					<li><%= link_to "My Projects", projects_path %></li>
+					<li><%= link_to "Search for Projects", projects_path %></li>
+					<li><%= link_to "Create Project", new_user_project_path(current_user.id) %></li>
+					<li><%= link_to "My Projects", user_projects_path(current_user.id) %></li>
+					<li><%= link_to "Contributing", user_projects_path(current_user.id) %></li>
 					<li><a href="#">My tasks</a></li>
 				</ul>
 			</li>
