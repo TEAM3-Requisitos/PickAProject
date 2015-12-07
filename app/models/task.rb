@@ -20,6 +20,8 @@ class Task < ActiveRecord::Base
     # are limitted options to choose
     PERMITTED_STATUS = %w(Running Stopped Planning)
     validates(:status, inclusion: PERMITTED_STATUS)
+    # The default value for each task is Stopped
+    after_initialize(:initialize_status)
 
 	# Impossible to create a task without a difficult level
 	validates(:difficult, presence: true)
@@ -36,4 +38,9 @@ class Task < ActiveRecord::Base
 	DESCRIPTION_MAX_LENGTH = 10000 # Characters
 	DESCRIPTION_MIN_LENGTH = 200 # Characters
 	validates(:description, length: { in: DESCRIPTION_MIN_LENGTH...DESCRIPTION_MAX_LENGTH })
+
+    private
+      def initialize_status
+        self.status ||= "Stopped"
+      end
 end
