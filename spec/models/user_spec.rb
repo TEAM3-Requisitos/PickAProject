@@ -18,7 +18,7 @@ RSpec.describe User, type: :model do
 		it "should increase the database" do
 			another_user = @user.dup
 			another_user.email = "another@email.com"
-			another_user.username = "another username"
+			another_user.username = "anotherusername"
 			expect{
 				another_user.save
 			}.to change(User, :count).by(1)
@@ -50,7 +50,8 @@ RSpec.describe User, type: :model do
 		# Create User with default parameters, only valid fields
 		def create_user(options={})
 			User.create({
-				username: "user example",
+				username: "userexample",
+				name: "name example",
 				email: "example@email.com",
 				password: "password",
 				password_confirmation: "password"
