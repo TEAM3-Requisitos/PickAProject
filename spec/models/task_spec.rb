@@ -119,5 +119,24 @@ RSpec.describe Task, type: :model do
         end
       end
     end
+    context "when testing wrong status values" do
+      it "should not be valid without a status" do
+        task = create_project_with_task().tasks.last
+        task.status = nil
+        expect(task).not_to be_valid
+      end
+
+      it "should begin in the Stopped status" do
+        task = create_project_with_task().tasks.last
+        expect(task.status).to be == "Stopped"
+      end
+
+      it "should not be valid with invalid status" do
+        task = create_project_with_task().tasks.last
+        invalid_status = "blablabla"
+        task.status = invalid_status
+        expect(task).not_to be_valid
+      end
+    end
   end
 end
