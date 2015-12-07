@@ -18,7 +18,7 @@ class Task < ActiveRecord::Base
 
     # Impossible to set manually the status name, there
     # are limitted options to choose
-    PERMITTED_STATUS = %w(Running Stopped Planning)
+    PERMITTED_STATUS = %w(Running Stopped Planning Finished)
     validates(:status, inclusion: PERMITTED_STATUS)
     # The default value for each task is Stopped
     after_initialize(:initialize_status)
