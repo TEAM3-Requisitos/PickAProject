@@ -2,9 +2,7 @@ class Task < ActiveRecord::Base
 	# Associate tasks to users and projects
 	# Each project and user has a list of tasks
 	belongs_to(:project)
-	belongs_to(:user)
-    has_and_belongs_to_many(:requesters, class_name: "User")
-    has_and_belongs_to_many(:contributors, class_name: "User")
+    has_and_belongs_to_many(:users)
 
 	# Attach image to a project
 	has_attached_file(:image_file, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png")

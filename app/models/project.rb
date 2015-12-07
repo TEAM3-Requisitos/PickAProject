@@ -7,7 +7,6 @@ class Project < ActiveRecord::Base
 
 	# Associate projects to their members and tasks
 	has_many :tasks, dependent: :destroy
-	has_many :users, through: :tasks
 
 	# Each project has some tasks
 	# Each task is a small thing that should be done in the project and must belongs to one

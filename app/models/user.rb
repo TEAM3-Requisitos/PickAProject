@@ -1,18 +1,13 @@
 class User < ActiveRecord::Base
-		# Devise is a flexible authentication solution for Rails based on Warden
+    # Devise is a flexible authentication solution for Rails based on Warden
 	# Include its default modules
 	devise(:database_authenticatable, :registerable,
 		   :rememberable, :trackable, :validatable)
 
 	# Associate users to projects that they own
 	has_many(:own_projects, foreign_key: 'owner_id', class_name: "Project")
-    has_and_belongs_to_many(:requested_tasks, class_name: "Task");
-    has_and_belongs_to_many(:own_tasks, class_name: "Task");
-
-	# Associate users to projects that they contribute (make tasks)
-	has_many :tasks
-	has_many :projects, through: :tasks
-
+    has_and_belongs_to_many(:tasks)
+	
 	# Associate users to skills
 	has_many :skills, dependent: :destroy
 
@@ -33,9 +28,7 @@ class User < ActiveRecord::Base
 	# Validations
 	# Personal information
 	validates(:username, uniqueness: { case_sensitive: false })
-	validates(:username, format: { with: /\A[a-zA-Z]+\z/, message: "this field only allows letters" })
 	validate(:validate_username)
-	validates(:name, presence: true)
 	validates(:phone, numericality: { only_integer: true }, allow_blank: true)
 	validates(:sex, inclusion: { in: %w(Male Female), message: "\"%{value}\" is not a valid sex" }, allow_blank: true)
 	
@@ -71,7 +64,7 @@ class User < ActiveRecord::Base
 		# Pick a Project starting pontuation
 		def default_parameters
 			self.points = 0
-			self.name = self.name.split.map(&:capitalize).join(' ')
+			self.name = self.name.split.map(&:capitalize).join(' ') unless name.blank?
 			self.country = self.country.split.map(&:capitalize).join(' ') unless country.blank?
 			self.city = self.city.split.map(&:capitalize).join(' ') unless city.blank?
 			self.work = self.work.split.map(&:capitalize).join(' ') unless work.blank?
