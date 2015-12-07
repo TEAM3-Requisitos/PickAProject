@@ -17,8 +17,11 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 Dir[File.expand_path(File.join(File.dirname(__FILE__),'support','*.rb'))].each {|f| require f}
+require 'simplecov'
 
 RSpec.configure do |config|
+  # Start the code coverage monitor
+  SimpleCov.start 
   # add support files
   config.include UserHelper
   config.include ProjectHelper
