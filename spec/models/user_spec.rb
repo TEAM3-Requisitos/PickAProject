@@ -5,15 +5,13 @@ RSpec.describe User, type: :model do
 	Rails.application.load_seed
 
 	context "when providing valid data" do
-		before :each do
+		before :all do
 			@user = create_user
 		end
-
 		# Testing the valid user generator
 		it "should be valid to the create_user test method" do
 			expect(@user).to be_valid
 		end
-
 		# Testing increasing database
 		it "should increase the database" do
 			another_user = @user.dup
@@ -23,7 +21,6 @@ RSpec.describe User, type: :model do
 				another_user.save
 			}.to change(User, :count).by(1)
 		end
-
 		# Testing associations
 		it "should be owner of a new project" do
 			expect{
@@ -44,38 +41,4 @@ RSpec.describe User, type: :model do
 			}.to change(@user.tasks, :count).by(1)
 		end
 	end
-
-	# Methods below are used to create instances of models
-	private
-		# Create User with default parameters, only valid fields
-		def create_user(options={})
-			User.create({
-				username: "userexample",
-				name: "name example",
-				email: "example@email.com",
-				password: "password",
-				password_confirmation: "password"
-			}.merge(options))
-		end
-
-		# Create Project with default parameters, only valid fields
-		def create_project(options={})
-			Project.create({
-				title: "title example",
-				level: "Easy",
-				category: "Art",
-				description: "description example"*20,
-				status: "Active",
-				percentage: 50
-			}.merge(options))
-		end
-
-		# Create Task with default parameters, only valid fields
-		def create_task(options={})
-			Task.create({
-				title: "title example",
-				difficult: 1,
-				description: "description example"*20
-			}.merge(options))
-		end
 end

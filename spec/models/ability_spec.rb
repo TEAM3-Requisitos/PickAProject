@@ -10,10 +10,17 @@ describe Ability do
 	Rails.application.load_seed
 
 	context "when is an admin" do
-		before :each do
+		before :all do
 			@user = create_user # Only valid data
 			@user.add_role(:admin)
 			@ability = Ability.new(@user)
+		end
+		after :all do
+			@user.destroy
+		end
+
+		it "should be a valid user" do
+			expect(@user).to be_valid
 		end
 
 		it "should be able to manage any project" do
@@ -22,9 +29,16 @@ describe Ability do
 	end
 
 	context "when is a common user" do
-		before :each do
+		before :all do
 			@user = create_user # Only valid data
 			@ability = Ability.new(@user)
+		end
+		after :all do
+			@user.destroy
+		end
+
+		it "should be a valid user" do
+			expect(@user).to be_valid
 		end
 
 		it "should be able to manage projects they are owner" do
@@ -47,11 +61,11 @@ describe Ability do
 	end
 
 	context "when is guest user (not logged in)" do
-		before :each do
+		before :all do
 			@user = User.new # guest user (not logged in)
 			@ability = Ability.new(@user)
 		end
-			
+
 		it "should be able to read projects" do
 			expect(@ability).to be_able_to(:read, create_project)
 		end
@@ -64,30 +78,4 @@ describe Ability do
 			expect(@ability).not_to be_able_to([:edit, :destroy, :update], create_project)
 		end
 	end
-
-	# Methods below are used to create instances of users and projects
-	private
-		# Create User with default parameters, only valid fields
-		def create_user(options={})
-			User.create({
-				username: "userexample",
-				name: "name example",
-				email: "example@email.com",
-				password: "password",
-				password_confirmation: "password"
-			}.merge(options))
-		end
-		
-		# Create Project with default parameters, only valid fields
-		def create_project(options={})
-			Project.create({
-				title: "Title example",
-				level: "Easy",
-				category: "Art",
-				description: "Description example"*20,
-				status: "Active",
-				percentage: 50
-			}.merge(options))
-		end
-
 end

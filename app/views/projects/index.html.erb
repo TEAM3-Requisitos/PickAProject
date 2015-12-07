@@ -8,7 +8,7 @@
 <div class="projects-container">
   <div class="inner-projects-container">
     <% @projects.each do |project| %>
-      <%= link_to user_project_path(project.owner.id, project) do %>
+      <%= link_to projects_path(project.owner.id, project) do %>
         <div class="each-project">
           <div class="image">
             <%if project.image_file.present? %>
