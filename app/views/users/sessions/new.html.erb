@@ -1,26 +1,30 @@
-<h2>Log in</h2>
+<div class="text-center" style="display:block">
+	<div class="register-box" style="padding:0px;margin-top:50px;display:inline-block">
+		<div class="register-logo">
+			<span class="logo-lg"><b>Pick</b>a<b>Project</b></span>
+		</div>
+		<!-- /.login-logo -->
+		<div class="login-box-body">
+			<p class="login-box-msg">Sign in to start your session</p>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+			<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+				<%= devise_error_messages! %>
+				<div class="form-group has-feedback">
+					<%= f.text_field :email, autofocus: true, class: "form-control", placeholder: "Email or username" %>
+				</div>
+				<div class="form-group has-feedback">
+					<%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "Password" %>
+				</div>
+				
+				<div class="row">
+					<div class="col-xs-7" style="padding:5px 0 5px 0">
+						Not a member? <%= link_to "Sign Up", new_user_registration_path, class: "btn-link btn-flat" %>
+					</div>
+					<div class="col-xs-offset-1 col-xs-4">
+						<%= f.submit "Sign In", class: "btn btn-primary btn-block btn-flat" %>
+					</div><!-- /.col -->
+				</div>
+			<% end %>
+		</div><!-- /.login-box-body -->
+	</div>
+</div>

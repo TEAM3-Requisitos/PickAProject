@@ -7,7 +7,6 @@ class Ability
       can :manage, Project, :owner_id => user.id
       can :create, Project
     end
-    can :manage, :all
     can :read, Project
   end
 end
