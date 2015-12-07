@@ -18,10 +18,10 @@
 
 					<ul class="list-group list-group-unbordered">
 						<li class="list-group-item">
-							<b>Friends</b> <a class="pull-right">0</a>
+							<b>Friends</b> <a class="pull-right btn-link">0</a>
 						</li>
 						<li class="list-group-item">
-							<b>Ranking</b> <a class="pull-right">1º</a>
+							<b>Ranking</b> <a class="pull-right btn-link">1º</a>
 						</li>
 					</ul>
 
@@ -30,21 +30,18 @@
 							<a class="btn btn-primary btn-block disabled"><b>Add Friend</b></a>
 						<% else %>
 							<%= link_to edit_user_registration_path, :get => :edit, class: "btn btn-primary btn-block" do %>
-								<b>Edit profile</b>
+								<b style="color:#eee">Edit profile</b>
 							<% end %>
 						<% end %>
 					<% end %>
-				</div>
-				<!-- /.box-body -->
-			</div>
-			<!-- /.box -->
+				</div><!-- /.box-body -->
+			</div><!-- /.box -->
 
 			<!-- About Me Box -->
 			<div class="box box-primary">
 				<div class="box-header with-border">
 					<h3 class="box-title">About Me</h3>
-				</div>
-				<!-- /.box-header -->
+				</div><!-- /.box-header -->
 				<div class="box-body">
 					<strong><i class="fa fa-book margin-r-5"></i> Education</strong>
 					<p class="text-muted">
@@ -97,7 +94,7 @@
 					<strong><i class="fa fa-pencil margin-r-5"></i>
 						 Skills
 						<% if user_signed_in? and current_user.id == @user.id %>
-							<a href="#" class="pull-right disabled"><i class="fa fa-plus margin-r-5"></i></a>
+							<a href="" class="pull-right btn-link disabled"><i class="fa fa-plus margin-r-5"></i></a>
 						<% end %>
 					</strong>
 					<p>
@@ -118,10 +115,8 @@
 							<% end %>
 						<% end %>
 					</p>
-				</div>
-				<!-- /.box-body -->
-			</div>
-			<!-- /.box -->
+				</div><!-- /.box-body -->
+			</div><!-- /.box -->
 		</div><!-- /.col-md-3 -->
 		<div class="col-md-9">
 			<div class="nav-tabs-custom">
@@ -136,15 +131,13 @@
 						<% @user.own_projects.each do |own_project| %>
 							
 						<% end %>
-					</div>
-					<!-- /.tab-pane -->
+					</div><!-- /.tab-pane -->
 					<!-- Public Activity's Tab -->
 					<div class="tab-pane" id="public_activity">
 						<% @user.projects.each do |project| %>
 							
 						<% end %>
-					</div>
-					<!-- /.tab-pane -->
+					</div><!-- /.tab-pane -->
 					<!-- Tasks' Tab -->
 					<div class="tab-pane" id="tasks">
 						<% @user.tasks.each do |task| %>
@@ -154,8 +147,7 @@
 				</div><!-- /.tab-content -->
 			</div><!-- /.nav-tabs-custom -->
 
-
-			<!-- AREA CHART -->
+			<!-- Contributions' chart -->
 			<div class="box box-primary">
 				<div class="box-header with-border">
 					<h3 class="box-title">Contributions</h3>
@@ -164,16 +156,9 @@
 					<div class="chart">
 						<!-- <= line_chart @data, @options %> -->
 					</div>
-				</div>
-				<!-- /.box-body -->
-			</div>
-			<!-- /.box -->
+				</div><!-- /.box-body -->
+			</div><!-- /.box -->
 
-
-			
 		</div><!-- /.col-md-9 -->
 	</div><!-- /.row -->
 </section><!-- Content Header (Page header) -->
-
-<!-- ChartJS 1.0.1 -->
-<script src="../../plugins/chartjs/Chart.min.js"></script>

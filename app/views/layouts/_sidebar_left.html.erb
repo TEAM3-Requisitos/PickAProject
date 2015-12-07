@@ -12,10 +12,10 @@
 					<% end %>
 				</div>
 				<div class="pull-left info">
-					<%= link_to(current_user) do %>
+					<%= link_to(current_user, class: "btn-link") do %>
 						<p style="margin:auto auto 0 5px"><b><%= current_user.username %></b></p>
 					<% end %>
-					<a><i class="fa fa-circle text-success"></i> Online</a>
+					<a class="btn-link"><i class="fa fa-circle text-success"></i> Online</a>
 				</div>
 			</div>
 		<% end %>
@@ -28,8 +28,7 @@
 					<button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
 				</span>
 			</div>
-		</form>
-		<!-- /.search form -->
+		</form><!-- /.search form -->
 
 		<!-- Sidebar Menu -->
 		<ul class="sidebar-menu">
@@ -47,6 +46,5 @@
 				</ul>
 			</li>
 		</ul><!-- /.sidebar-menu -->			
-	</section>
-	<!-- /.sidebar -->
+	</section><!-- /.sidebar -->
 </aside>
