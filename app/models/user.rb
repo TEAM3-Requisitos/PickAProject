@@ -1,12 +1,14 @@
 class User < ActiveRecord::Base
 		# Devise is a flexible authentication solution for Rails based on Warden
 	# Include its default modules
-	devise :database_authenticatable, :registerable,
-				 :rememberable, :trackable, :validatable  
+	devise(:database_authenticatable, :registerable,
+		   :rememberable, :trackable, :validatable)
 
 	# Associate users to projects that they own
-	has_many :own_projects, foreign_key: 'owner_id', class_name: "Project"
-	
+	has_many(:own_projects, foreign_key: 'owner_id', class_name: "Project")
+    has_and_belongs_to_many(:requested_tasks, class_name: "Task");
+    has_and_belongs_to_many(:own_tasks, class_name: "Task");
+
 	# Associate users to projects that they contribute (make tasks)
 	has_many :tasks
 	has_many :projects, through: :tasks
