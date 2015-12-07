@@ -57,7 +57,7 @@
                         <% else %>
                           <!-- Display button to assign the task -->
                           <!--[TODO] Fix this link -->
-                          <%= link_to "Be yourself!" , edit_project_path(@project), class: 'btn btn-default' %>
+                          <%= link_to "Be yourself!" , edit_user_project_path(current_user.id, @project), class: 'btn btn-default' %>
                         <% end %>
                       </dd>
                     </dl>

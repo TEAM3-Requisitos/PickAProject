@@ -19,7 +19,7 @@ module ProjectHelper
     task = Task.create({
       title: "a"*(Task::TITLE_MIN_LENGTH),
       difficult: Task::PERMITTED_FIBONACCI_VALUES.first,
-      description: "a"*(Task::DESCRIPTION_MIN_LENGTH)
+      description: "a"*(Task::DESCRIPTION_MIN_LENGTH),
     }.merge(options))
 
     return task

@@ -8,7 +8,7 @@
 <div class="projects-container">
   <div class="inner-projects-container">
     <% @projects.each do |project| %>
-      <%= link_to(project) do %>
+      <%= link_to projects_path(project.owner.id, project) do %>
         <div class="each-project">
           <div class="image">
             <%if project.image_file.present? %>
@@ -19,7 +19,7 @@
           </div>
           <div class="title-author">
             <h3><%= project.title %></h3>
-            <h6>By <%= project.author %></h6>
+            <h6>By <%= project.owner.username %></h6>
           </div>
         </div>
       <% end %>
@@ -29,6 +29,6 @@
 
 <!-- Link to create a new project, if the user is logged in -->
 <% if user_signed_in? %>
-  <%= link_to t('.new', :default => t("helpers.links.new")), new_project_path, :class => 'btn btn-primary' %>
+  <%= link_to t('.new', :default => t("helpers.links.new")), new_user_project_path(current_user.id), :class => 'btn btn-primary' %>
   <br />
 <% end %>

@@ -8,6 +8,7 @@ Gemfile.lock
 *.swn
 *.swp
 *.swo
+.sw*
 log/*
 !/log/.keep
 tmp/*

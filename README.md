@@ -1,9 +1,4 @@
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Duerno/PickAProject?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-[![Stories in Ready](https://badge.waffle.io/Duerno/PickAProject.svg?label=ready&title=Ready)](http://waffle.io/Duerno/PickAProject)
-<a href="https://codeclimate.com/github/Duerno/PickAProject"><img src="https://codeclimate.com/github/Duerno/PickAProject/badges/gpa.svg" /></a>
-[![Code Climate](https://codeclimate.com/github/EduardoBrasil/PickAProject/badges/gpa.svg)](https://codeclimate.com/github/EduardoBrasil/PickAProject)
-
-
+# PickAProject <a href="https://codeclimate.com/github/luanguimaraesla/PickAProject"><img src="https://codeclimate.com/github/luanguimaraesla/PickAProject/badges/gpa.svg" /></a> <a href="https://codeclimate.com/github/luanguimaraesla/PickAProject/coverage"><img src="https://codeclimate.com/github/luanguimaraesla/PickAProject/badges/coverage.svg" /></a>
 
 # The Pick a Project Development Style Guide
 
@@ -14,10 +9,9 @@ This project is being made possible by:
 
 |              Name              | Registration Number |           Email          |
 |:------------------------------:|:-------------------:|:------------------------:|
-| Eduardo Brasil Martins         |      11/0115104     | brasil.eduardo1@gmail.com |
 | Felipe Duerno do Couto Almeida |      11/0116712     | felipeduernoal@gmail.com |
 |     Luan Guimarães Lacerda     |      12/0125773     |       luan@live.in       |
-|     Gabriel Campos Oliveira    |      13/0111058     |   campos.1122@gmail.com  |
+|     Eduardo Brasil Martins     |      11/0115104     |brasil.eduardo1@gmail.com |
 
 ## Table of Contents
 

@@ -7,7 +7,7 @@ class ProjectsController < ApplicationController
   def index
     begin
       logger.debug "Trying to get the Projects tables from the database"
-      @projects = Project.all
+      @projects = Project.where(owner_id: current_user.id);
       logger.info "Success getting all the projects from the database"
       logger.debug "Rendering the Projects index view"
     rescue ActiveRecord::RecordNotFound => e
@@ -19,8 +19,24 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def all_projects
+    begin
+      logger.debug "Trying to get the Projects tables from the database"
+      @projects = Project.all
+      logger.info "Success getting all the projects from the database"
+      logger.debug "Rendering the Projects index view"
+      render "index"
+    rescue ActiveRecord::RecordNotFound => e
+      # If there are an error and the projects are unreachable,
+      # Returns to home, and show an error message
+      logger.error "Error getting the Projects table from database"
+      logger.debug "Redirecting to the root path"
+      format.html { redirect_to root_path, notice: 'Something comes wrong. Please, try again' }
+    end
+  end
+
   def show
-    logger.debug "Trying to show a project with id: #{ @project. id }" 
+    logger.debug "Trying to show a project with id: #{ @project.id }" 
   end
 
   def new
@@ -38,7 +54,7 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    logger.debug "Trying to edit a project with id: #{ @project. id }" 
+    logger.debug "Trying to edit a project with id: #{ @project.id }" 
   end
 
   def create
@@ -47,17 +63,17 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
 
     # Associate the project created along with its owner
-    @project.owner_id = current_user.id
+    #@project.owner_id = current_user.id
+    current_user.own_projects << @project
 
     # [REMOVE] should be a association
-    @project.author = "Test Author"
     @project.percentage = 0 # Project begin, 0% done.
 
     respond_to do |format|
       if @project.save
         # If it is ok, go to the project page and display a success message
         logger.info "Success creating and saving a new Project in the database, id: #{ @project.id }"
-        format.html { redirect_to @project, notice: 'Project was successfully created.' }
+        format.html { redirect_to user_project_path(current_user.id, @project), notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @project }
       else
         # If something comes wrong, go to the form again
@@ -75,7 +91,7 @@ class ProjectsController < ApplicationController
       if @project.update(project_params)
         # If it is ok, go to the project page and display a success message
         logger.info "Success saving modifications to Project, id: #{ @project.id }"
-        format.html { redirect_to @project, notice: 'Project was successfully updated.' }
+        format.html { redirect_to user_project_path(current_user.id, @project), notice: 'Project was successfully updated.' }
         format.json { render :show, status: :ok, location: @project }
       else
         # If something comes wrong, go to the form again
@@ -105,7 +121,7 @@ class ProjectsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
       params.require(:project).permit(:title, :category, :level, :description, :status, :image_file,
-      tasks_attributes: [:id, :title, :description, :difficult, :image_file, :_destroy])
+      tasks_attributes: [:id, :title, :status, :description, :difficult, :image_file, :_destroy])
     end
 
 end

@@ -33,6 +33,10 @@ gem 'coffee-rails', '~> 4.1.0'
 gem "paperclip", "~> 4.3"
 # Use bcrypt to make password secure
 gem "bcrypt"
+# Use ChartJS
+gem "chartjs-ror"
+# Use jQuery input masks
+gem 'jquery-inputmask-rails'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -61,6 +65,9 @@ end
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+# Simplecov for coverage
+gem 'simplecov', :require => false, :group => :test
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
