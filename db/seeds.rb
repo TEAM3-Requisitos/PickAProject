@@ -5,5 +5,6 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-
-Role.create([{name:'user'},{name:'admin'}])
+['user', 'admin'].each do |each_role|
+  Role.create({name: each_role})
+end
