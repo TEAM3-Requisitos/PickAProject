@@ -3,8 +3,9 @@ Rails.application.routes.draw do
   resources :users do
     resources :projects
   end
-
-  root 'projects#all_projects'
+ 
+  root :to => "pages#home"
+  #root 'projects#all_projects'
 
   get 'help'=> 'pages#help'
   get 'about'=> 'pages#about'
