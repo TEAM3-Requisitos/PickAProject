@@ -16,5 +16,5 @@ pt:
     titles:
       edit: "Editae %{model}"
       save: "Savar %{model}"
-      new: "Nova %{model}"
+      new: "Novo %{model}"
       delete: "Deletar %{model}"

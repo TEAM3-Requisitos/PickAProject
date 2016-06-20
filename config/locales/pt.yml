@@ -1,2 +1,26 @@
 pt:
-  hello: Olá mundo
+  activerecord:
+    helpers:
+      links:
+        back: Voltar
+        edit: Editar
+        destroy: Destroir
+    models:
+      user: Usuário
+      project: Projeto
+      sessionn: Sessão
+    attributes:
+      name: Nome
+      email: E-mail
+  devise:
+    session:
+      new:
+        email: E-mail
+        password: Senha
+  users:
+    new:
+      title: Novo %{model}
+    show:
+      back: Voltar
+      edit: Editar
+      destroy: Destroir
