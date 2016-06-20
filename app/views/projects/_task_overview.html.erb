@@ -3,7 +3,7 @@
     <% @project.tasks.each do |each_task| %>
       <div class="each-task">
           <!-- Click in the image to open the task -->
-          <a href="#" class="btn btn-default btn-to-modal" id="openBtn<%= each_task.id %>">
+          <a href="/localhost:3000" class="btn btn-default btn-to-modal" id="openBtn<%= each_task.id %>">
             <% if each_task.image_file.present? %>
               <%= image_tag(each_task.image_file.url(), class: "image-to-modal-prop") %>
             <% else %>
@@ -101,4 +101,3 @@
   <% else %>
   <% end %>
 </div>
-
